@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RestApp.Views.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:RestApp.Views"
+             xmlns:viewmodels="clr-namespace:RestApp.ViewModels"
+             xmlns:local="clr-namespace:RestApp.Views"
+             xmlns:base="clr-namespace:RestApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Green">
+            <TextBlock Text="{Binding Title}" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button Command="{Binding ExitCommand}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ContentPresenter Content="{Binding CurrentViewModel}">
+                <ContentPresenter.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:WaiterViewModel}">
+                        <views:WaiterView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:KitchenViewModel}">
+                        <views:KitchenView/>
+                    </DataTemplate>
+                </ContentPresenter.Resources>
+            </ContentPresenter>
+        </Grid>
+
+    </Grid>
+</UserControl>
